@@ -1,0 +1,26 @@
+{
+  "name": "fatherpanel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "post_i": "sudo bash bin/install",
+    "start": "concurrently --kill-others \"npm run start:user-data-service\" ",
+    "start:user-data-service": "cd ./services/user-data-service && npm start",
+    "clean:user-data-service": "cd ./services/user-data-service && npm run clean"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RetroSpectro/fatherpanel.git"
+  },
+  "author": "vk.com/mikesb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RetroSpectro/fatherpanel/issues"
+  },
+  "homepage": "https://github.com/RetroSpectro/fatherpanel#readme",
+  "dependencies": {
+    "concurrently": "^6.2.1",
+    "lb": "^0.0.1"
+  }
+}

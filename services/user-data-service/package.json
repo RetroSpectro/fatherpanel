@@ -1,0 +1,75 @@
+{
+  "name": "user-data-service",
+  "version": "1.0.0",
+  "description": "User-data-service",
+  "keywords": [
+    "loopback-application",
+    "loopback"
+  ],
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "build": "lb-tsc",
+    "build:watch": "lb-tsc --watch",
+    "lint": "npm run prettier:check && npm run eslint",
+    "lint:fix": "npm run eslint:fix && npm run prettier:fix",
+    "prettier:cli": "lb-prettier \"**/*.ts\" \"**/*.js\"",
+    "prettier:check": "npm run prettier:cli -- -l",
+    "prettier:fix": "npm run prettier:cli -- --write",
+    "eslint": "lb-eslint --report-unused-disable-directives .",
+    "eslint:fix": "npm run eslint -- --fix",
+    "pretest": "npm run clean && npm run build",
+    "test": "lb-mocha --allow-console-logs \"dist/__tests__\"",
+    "posttest": "npm run lint",
+    "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js && npm run posttest",
+    "docker:build": "docker build -t user-data-service .",
+    "docker:run": "docker run -p 3002:3002 -d user-data-service",
+    "migrate": "node ./dist/migrate",
+    "prestart": "npm run build",
+    "start": "node -r source-map-support/register .",
+    "clean": "lb-clean dist *.tsbuildinfo .eslintcache"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "",
+  "license": "",
+  "files": [
+    "README.md",
+    "index.js",
+    "index.d.ts",
+    "dist",
+    "src",
+    "!*/__tests__"
+  ],
+  "dependencies": {
+    "@loopback/authentication": "^7.0.6",
+    "@loopback/authentication-jwt": "^0.7.6",
+    "@loopback/authorization": "^0.7.6",
+    "@loopback/boot": "^3.2.0",
+    "@loopback/core": "^2.14.0",
+    "@loopback/repository": "^3.4.0",
+    "@loopback/rest": "^9.1.2",
+    "@loopback/rest-explorer": "^3.0.6",
+    "@loopback/security": "^0.3.6",
+    "@loopback/service-proxy": "^3.0.6",
+    "@types/speakeasy": "^2.0.5",
+    "bcryptjs": "^2.4.3",
+    "isemail": "^3.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "loopback-connector-mongodb": "^5.5.0",
+    "speakeasy": "^2.0.0",
+    "tslib": "^2.0.0"
+  },
+  "devDependencies": {
+    "@loopback/build": "^6.2.9",
+    "@loopback/eslint-config": "^10.0.5",
+    "@loopback/testlab": "^3.2.11",
+    "@types/node": "^10.17.51",
+    "eslint": "^7.18.0",
+    "source-map-support": "^0.5.19",
+    "typescript": "~4.1.3"
+  }
+}
